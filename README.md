@@ -1,0 +1,1 @@
+# com.StriXInteractive.GlobalVariables
