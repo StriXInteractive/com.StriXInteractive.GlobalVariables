@@ -25,6 +25,10 @@ namespace StriXInteractive.Tools.GlobalVariables {
             EditorGUILayout.Space();
 
             if (GUILayout.Button("Raise Event")) {
+                if (globalVariable == null || globalVariable.OnValueChanged == null) {
+                    return;
+                }
+
                 globalVariable.OnValueChanged();
             }
         }
