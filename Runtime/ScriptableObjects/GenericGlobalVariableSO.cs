@@ -8,27 +8,38 @@ namespace StriXInteractive.Tools.GlobalVariables {
     public class GenericGlobalVariableSO<T> : ScriptableObject, ISerializationCallbackReceiver {
 
         [SerializeField] private T initialValue;
-        [NonSerialized] public T RuntimeValue;
 
         [Header("Editor Only")]
         [SerializeField] private bool saveDuringPlayMode;
 
         [NonSerialized] public UnityAction OnValueChanged;
 
+        private T runtimeValue;
+        public T RuntimeValue {
+            get { return runtimeValue; }
+        }
+
         public virtual T Value {
-            get { return RuntimeValue; }
+            get { return runtimeValue; }
             set {
 
-                T oldValue = RuntimeValue;
+                T oldValue = runtimeValue;
 
-                RuntimeValue = value;
+                runtimeValue = value;
 
-                if (!EqualityComparer<T>.Default.Equals(oldValue, RuntimeValue)) {
-                    if (OnValueChanged != null) {
-                        OnValueChanged?.Invoke();
-                    }
+                if (!EqualityComparer<T>.Default.Equals(oldValue, runtimeValue)) {
+                    RaiseEvent();
                 }
             }
+        }
+
+        public void RaiseEvent() {
+
+            if (OnValueChanged == null) {
+                return;
+            }
+
+            OnValueChanged?.Invoke();
         }
 
         public void OnAfterDeserialize() {
