@@ -1,0 +1,16 @@
+{
+    "name": "com.StriXInteractive.GlobalVariables.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:f9ab80d2831f0af4a986674647e2b734"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
